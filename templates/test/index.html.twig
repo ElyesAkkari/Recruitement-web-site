@@ -1,0 +1,91 @@
+{% extends 'templateCLT.html.twig' %}
+{% block content %}
+<!-- Header -->
+<header id="head">
+    <div class="container">
+        <div class="row">
+            <h1 class="lead">EMPLOI, STAGES, FORMATIONS</h1>
+            <p class="tagline">On vous facilite la vie!</p>
+            <p><a class="btn btn-default btn-lg" role="button">Plus de Détails</a> <a class="btn btn-action btn-lg" role="button">S'inscrire</a></p>
+        </div>
+    </div>
+</header>
+<!-- /Header -->
+<!-- Intro -->
+<br>
+<!-- Offres-->
+<body>
+<div class="container">
+
+
+
+      <div class="row">
+{% for i in 0..5 %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top"  src="{{ asset ('unnamed.jpg') }}" alt="Example" ></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">Item One</a>
+                            </h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+{% endfor %}
+
+            </div>
+            <!-- /.row -->
+
+
+
+
+<br>
+</div>
+<!-- /.container -->
+<!-- /Offres-->
+<!-- Counter Area Start-->
+<section class="counter-section section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="0.3s">
+                    <div class="icon"><i class="lni-briefcase"></i></div>
+                    <div class="counterUp">250</div>
+                    <p>Offres D'Emploi</p>
+                </div>
+            </div>
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="0.6s">
+                    <div class="icon"><i class="lni-check-mark-circle"></i></div>
+                    <div class="counterUp">950</div>
+                    <p>Offres de Stage</p>
+                </div>
+            </div>
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="0.9s">
+                    <div class="icon"><i class="lni-cup"></i></div>
+                    <div class="counterUp">150</div>
+                    <p>Formations</p>
+                </div>
+            </div>
+            <!-- Counter Item -->
+            <div class="col-lg-3 col-md-6 col-sm-12 work-counter-widget">
+                <div class="counter wow fadeInDown" data-wow-delay="1.2s">
+                    <div class="icon"><i class="lni-user"></i></div>
+                    <div class="counterUp">299</div>
+                    <p>Happy Clients</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /test-->
+{% endblock %}
