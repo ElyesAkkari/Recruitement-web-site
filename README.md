@@ -5,3 +5,4 @@
 git clone +url;
 composer require symfony/web-server-bundle
 php bin/console server:run
+mariem ayadi
