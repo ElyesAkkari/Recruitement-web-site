@@ -2,16 +2,94 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="564b0fa8-06c2-4adc-a91a-86f17ad18857" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/event/afficher.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/ajouter.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/event/modifier.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/sponsor/afficher.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/sponsor/ajouter.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/sponsor/modifier.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/demo.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/css/main.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/apple-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/login-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/logo-dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/profile-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user-medium.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/img/user5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/scripts/klorofil-common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/bootstrap/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/css/chartist-custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/css/chartist-custom.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/css/chartist.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/css/chartist.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/js/chartist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/js/chartist.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/map/chartist.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/map/chartist.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/chartist/scss/chartist.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery-slimscroll/jquery.slimscroll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery-slimscroll/jquery.slimscroll.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/angular.easypiechart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/angular.easypiechart.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/easypiechart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/easypiechart.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/jquery.easypiechart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/jquery/jquery.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/fonts/Linearicons-Free.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/fonts/Linearicons-Free.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/fonts/Linearicons-Free.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/fonts/Linearicons-Free.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/fonts/Linearicons-Free.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/linearicons/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/toastr/toastr.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/toastr/toastr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/toastr/toastr.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assetss/vendor/toastr/toastr.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210226001717.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210226001851.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EventController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SponsorController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Event.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Sponsor.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EventType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/SponsorType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EventRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SponsorRepository.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/event/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event/afficher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/event/ajouter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event/ajouter.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/event/modifier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/event/modifier.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sponsor/afficher.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sponsor/afficher.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sponsor/ajouter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sponsor/ajouter.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sponsor/modifier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sponsor/modifier.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,20 +224,22 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hazem\WebPIDEV\templates" />
+      <recent name="C:\Users\hazem\WebPIDEV\public" />
+      <recent name="C:\Users\DELL\projetPI\public" />
+      <recent name="C:\Users\DELL\projetPI\public\assets" />
+      <recent name="C:\Users\DELL\projetPI\vendor\webmozart" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\DELL\projetPI\public" />
       <recent name="C:\Users\DELL\projetPI\templates\test" />
       <recent name="C:\Users\DELL\projetPI\tests" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\DELL\projetPI\public" />
-      <recent name="C:\Users\DELL\projetPI\public\assets" />
-      <recent name="C:\Users\DELL\projetPI\vendor\webmozart" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -174,6 +254,7 @@
       <workItem from="1613385376594" duration="1534000" />
       <workItem from="1613493638452" duration="8656000" />
       <workItem from="1614297786298" duration="1617000" />
+      <workItem from="1614299566684" duration="4191000" />
     </task>
     <servers />
   </component>
@@ -190,5 +271,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

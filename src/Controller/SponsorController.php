@@ -79,7 +79,7 @@ class SponsorController extends AbstractController
     /**
      * @Route ("/RechercherSponsor",name="rechercherS")
      */
-    public function RechercherSponsor(SponsorRepository $repository,Request $request){
+    public function rechercher(SponsorRepository $repository,Request $request){
         $data=$request->get('search');
         $sponsor=$repository->findBy(['nom'=>$data]);
         return $this->render("sponsor/afficher.html.twig", ["sponsor"=>$sponsor]);

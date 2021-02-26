@@ -28,7 +28,7 @@ class Sponsor
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=event::class, inversedBy="sponsors")
+     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="sponsors")
      */
     private $event;
 
@@ -61,12 +61,12 @@ class Sponsor
         return $this;
     }
 
-    public function getEvent(): ?event
+    public function getEvent(): ?Event
     {
         return $this->event;
     }
 
-    public function setEvent(?event $event): self
+    public function setEvent(?Event $event): self
     {
         $this->event = $event;
 

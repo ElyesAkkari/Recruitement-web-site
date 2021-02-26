@@ -79,7 +79,7 @@ class EventController extends AbstractController
     /**
      * @Route ("/RechercherEvent",name="rechercherE")
      */
-    public function RechercherEvent(EventRepository $repository,Request $request){
+    public function rechercher(EventRepository $repository,Request $request){
         $data=$request->get('search');
         $event=$repository->findBy(['nom'=>$data]);
         return $this->render("event/afficher.html.twig", ["event"=>$event]);
