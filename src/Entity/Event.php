@@ -6,6 +6,8 @@ use App\Repository\EventRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=EventRepository::class)
@@ -21,26 +23,35 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="champs obligatoire")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="champs obligatoire")
      */
     private $type;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="champs obligatoire")
+     * @Assert\Length(
+     *      min = 20,
+     *      minMessage = "La description doit etre au minimum {{ limit }} caractères"
+     * )
      */
     private $description;
 
     /**
      * @ORM\OneToMany(targetEntity=Sponsor::class, mappedBy="event",cascade={"all"},orphanRemoval=true)
+     * @Assert\NotNull
      */
     private $sponsors;
 

@@ -66,7 +66,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset("assets/img/user.jpg") }}" class="img-circle" alt="Avatar"> <span>Hazem</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset("assetss/img/user.jpg") }}" class="img-circle" alt="Avatar"> <span>Hazem</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                                 <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
@@ -124,7 +124,8 @@
                                     <h3 class="panel-title">Mise à jour des sponsors</h3>
                                 </div>
                                 <div class="panel-body">
-                                    {{ form(f) }}
+                                    {{ form_start(f,{'attr': {'novalidate': 'novalidate'}} ) }}
+                                    {{ form_end(f) }}
                                 </div>
                             </div>
                             <!-- END BASIC TABLE -->
