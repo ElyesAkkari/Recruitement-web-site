@@ -1,0 +1,49 @@
+
+{% extends 'logTemp.html.twig' %}
+
+{% block content %}
+    <body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+            <form class="login100-form validate-form" method="post">
+                <span class="login100-form-title p-b-33">
+						Account Registration
+					</span>
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                <div class="wrap-input100 validate-input">
+                    {{ form_widget(form.username,{'attr':{'placeholder':'nom d utilisateur', 'class': 'input100'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.username) }} </label>
+                <div class="wrap-input100 rs1 validate-input">
+                    {{ form_widget(form.email,{'attr':{'placeholder':'votre adresse mail', 'class': 'input100'}})}}
+                </div>
+                <label class="alert-danger "> {{form_errors(form.email) }} </label>
+                <div class="wrap-input100 rs1 validate-input">
+                    {{ form_widget(form.nom,{'attr':{'placeholder':'votre nom', 'class': 'input100'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.nom) }} </label>
+                <div class="wrap-input100 rs1 validate-input">
+                    {{ form_widget(form.prenom,{'attr':{'placeholder':'votre prenom', 'class': 'input100'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.prenom) }} </label>
+                <div class="wrap-input100 rs1 validate-input">
+                    {{ form_widget(form.password,{'attr':{'placeholder':'mot de passe', 'class': 'input100'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.password) }} </label>
+                <div class="wrap-input100 rs1 validate-input">
+                    {{ form_widget(form.confpsw,{ 'attr':{'placeholder':'verifier mot de passe', 'class': 'input100' }})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.confpsw) }} </label>
+                <div class="container-login100-form-btn m-t-20">
+                    <button class="login100-form-btn" type="submit">
+                        Inscrire
+                    </button>
+                </div>
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+</div>
+    </body>
+{% endblock %}
