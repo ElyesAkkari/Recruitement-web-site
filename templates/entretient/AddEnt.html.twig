@@ -1,0 +1,24 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <div class="cust-heading">
+    <div class="col-md-8" style="margin-left: 15%">
+    <div class="section-heading">
+        <h4><u>Ajouter Entretien</u></h4>
+
+
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+        {{ form_row(form.user,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.datedeb,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.temps,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.recruteur,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.resultat,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.mail,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.etat,{ 'attr': {'class': 'form-control'} }) }}
+        {{ form_row(form.NumeroTelephone,{ 'attr': {'class': 'form-control'} }) }}
+        <input onclick="add()" id="btn" type="submit" class="btn btn-success my-3" value="Add">
+        {{ form_end(form) }}
+    </div>
+    </div>
+
+    </div>
+{% endblock %}

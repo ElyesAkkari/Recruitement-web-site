@@ -6,6 +6,8 @@ use App\Entity\Event;
 use App\Entity\Sponsor;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,10 +18,12 @@ class SponsorType extends AbstractType
         $builder
             ->add('nom')
             ->add('type')
-            ->add('event',EntityType::class,[
-                'class'=>Event::class,
-                'choice_label'=>'nom'
-            ])
+            ->add('image' , FileType::class, array(
+                'data_class' => null))
+            ->add('event' , EntityType::class,[
+        'class'=>Event::class,
+        'choice_label'=>'nom'
+    ])
         ;
     }
 

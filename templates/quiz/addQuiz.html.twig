@@ -1,0 +1,35 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <div class="cust-heading">
+
+
+    <div class="col-md-12">
+    <div class="section-heading">
+        <h4><u>Ajouter Un QUIZ</u></h4>
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Titre du Quiz :</label>
+                <div class="col-sm-10">
+                {{ form_widget(form.titre,{'attr': {'class': 'form-control'}} )}}
+                <div class="alert-danger">{{ form_errors(form.titre) }}</div>
+                </div>
+            </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Crée par :</label>
+            <div class="col-sm-10">
+                 {{ form_widget(form.owner,{'attr': {'readonly': true, 'class': 'form-control'} , value : app.user.email}) }}
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+            <button type="submit" title="ajouter" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    </div>
+
+</div>
+{% endblock %}

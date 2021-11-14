@@ -1,0 +1,25 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <!-- Page Content -->
+    <div class="page-heading about-heading header-text" style="background-image: url(eltemp/assets/images/heading-6-1920x500.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <h2>Jobs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1> inscription sur le site  </h1>
+    {{ form_start(form) }}
+    {{ form_row(form.username,{'label':'nom d\'utilisateur','attr':{'placeholder':'nom d_utilisateur....'}}) }}
+    {{ form_row(form.email,{'label':'adrese mail','attr':{'placeholder':'adressse....'}}) }}
+    {{ form_row(form.password,{'label':'mot de passe','attr':{'placeholder':'mot de passe....'}}) }}
+    {{ form_row(form.confirm_passworld,{'label':'confirmation de mot de passe ','attr':{'placeholder':'repeter mot de passe....'}}) }}
+    <button type="submit" class="btn btn-success">inscription</button>
+    {{ form_end(form)}}
+{% endblock %}

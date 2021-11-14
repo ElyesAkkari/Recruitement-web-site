@@ -1,0 +1,153 @@
+{% extends 'testing.html.twig' %}
+
+            {% block css %}
+                <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+                <link href={{ asset("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css") }} rel="stylesheet">
+                <link href={{ asset("http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css") }} rel="stylesheet"  type='text/css'>
+                <title>Impacteers</title>
+
+                <!-- Bootstrap core CSS -->
+                <link href={{ asset("eltemp/vendor/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
+
+                <!-- Additional CSS Files -->
+                <link rel="stylesheet" href={{ asset("eltemp/assets/css/fontawesome.css") }}>
+                <link rel="stylesheet" href={{ asset("eltemp/assets/css/style.css") }}>
+                <link rel="stylesheet" href={{ asset("eltemp/assets/css/owl.css") }}>
+                <link rel="stylesheet" href="{{ asset("style.css") }}">
+                <link rel="stylesheet" href="{{ asset("style1.css") }}">
+                <link rel="stylesheet" href="{{ asset("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css") }}">
+                <link rel="stylesheet" type="text/css" href="{{ asset('rating.css') }}" />
+            {% endblock%}
+
+        {% block content %}
+            <!-- Page Content -->
+            <br>
+            <br>
+            <div class="products">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-8">
+                            <p class="lead">
+                                <i class="fa fa-map-marker"></i> Tunisia &nbsp;&nbsp;
+                                <i class="fa fa-calendar"></i> {{ event.date|date('d-m-Y') }} &nbsp;&nbsp;
+                            </p>
+
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <h3>{{ event.nom }}</h3>
+                            </div>
+                            {{ event.description }}
+                            <br>
+                            <br>
+                            <br>
+                            <h4>Sponsorisé par :</h4>
+                            <br>
+                            {% for  s in sponsor %}
+                                <img src="{{ asset('uploads/images/' ~ s.image)}}"
+                                     style="width: 100px ; height:100px"></a>
+                            {% endfor %}
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="form-check">
+                                <div class="form-check">
+                                <h2>Liste des commentaires</h2>
+                                {% for comment in event.comments %}
+                                    <p>Publié par {{ comment.nickname }} le {{ comment.created_at|date("d/m/Y H:i:s") }}</p>
+                                    <div>{{ comment.content|raw }}</div>
+                                {% endfor %}
+                                </div>
+                                <div class="form-check" id="ajout-commentaire">
+                                <h2>Donner un avis ou un commentaire ici :</h2>
+                                {{ form(com) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-4">
+                            <div class="contact-form">
+                                <div class="form-group">
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <div class="contenu">
+                                    <div class="poste">
+                                        <div class="texte">
+                                            Thanks for rating us!</div>
+                                        <div class="modifier">
+                                            EDIT</div>
+                                    </div>
+                                    <div class="star-widget">
+                                        <h3>Noter évenement</h3>
+                                        <input type="radio" name="rate" id="rate-5">
+                                        <label for="rate-5" class="fa fa-star"></label>
+                                        <input type="radio" name="rate" id="rate-4">
+                                        <label for="rate-4" class="fa fa-star"></label>
+                                        <input type="radio" name="rate" id="rate-3">
+                                        <label for="rate-3" class="fa fa-star"></label>
+                                        <input type="radio" name="rate" id="rate-2">
+                                        <label for="rate-2" class="fa fa-star"></label>
+                                        <input type="radio" name="rate" id="rate-1">
+                                        <label for="rate-1" class="fa fa-star"></label>
+                                        <form action="#">
+                                            <textarea cols="30" placeholder="Describe your experience.."></textarea>
+                                            <!-- Due to more textarea tags I got a problem So I've changed the textarea tag to textare. Please correct it. -->
+                                             <br />
+                                            <button type="submit">Post</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                                <img src="{{ asset('uploads/images/' ~ event.image)}}"
+                                     style="width: 200px ; height:200px">
+                                <div>
+                                    <button class="btn btn-danger">Participer à l'évenement</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bootstrap core JavaScript -->
+            <script src="{{ asset("eltemp/vendor/jquery/jquery.min.js") }}"></script>
+            <script src="{{ asset("eltemp/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+
+            <!-- Additional Scripts -->
+            <script src="{{ asset("eltemp/assets/js/custom.js") }}"></script>
+            <script src="{{ asset("eltemp/assets/js/owl.js") }}"></script>
+            <script src="{{ asset("https://kit.fontawesome.com/a076d05399.js") }}"></script>
+            <script>
+                window.onload = () =>{
+                    document.querySelectorAll("[data-reply]").forEach(element => {
+                        element.addEventListener("click", function () {
+                            document.querySelector("#comments_parentid").value = this.dataset.id;
+                        });
+                    });
+                }
+            </script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <script src="{{ asset('rating.js') }}"></script>
+
+        {% endblock %}

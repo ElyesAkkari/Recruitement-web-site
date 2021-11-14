@@ -1,0 +1,128 @@
+{% extends 'back.html.twig' %}
+{% block content %}
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+
+<div class="right_col">
+    <div class="container">
+        <div class="page-title">
+            <h1>Information de nos formations</h1>
+        </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm ">
+                <input type="text" id="search" class="form-control" placeholder="Search">
+            </div>
+        </div>
+        </br>
+    </div>
+    <div class="container">
+
+
+
+    <table border="2"CELLPADDING="4" CELLSPACING="4" WIDTH="100%"class=" table-dark">
+    <thead>
+        <tr>
+            <th>nom</th>
+            <th>datedeb</th>
+            <th>prix</th>
+            <th>nbrparticipant</th>
+            <th>nbrheures</th>
+            <th>image</th>
+            <th>categorie</th>
+            <th>Actions</th>
+
+
+        </tr>
+
+    </thead>
+            <tbody id="tableFormation">
+
+                {% for formation  in formations %}
+
+                 <tr>
+                <td>{{ formation.nom }}</td>
+                <td>{{ formation.datedeb|date("m/d/Y") }}</td>
+                <td>{{ formation.prix }}</td>
+                <td>{{ formation.nbrpartricipant }}</td>
+                <td>{{ formation.nbrheures }}</td>
+                <td><img height="100px" width="100px" src="{{ asset('uploads/images/') }}{{formation.image}}"></td>
+                <td> {{ formation.getCategories().getNom() }} </td>
+                <td> <a href="{{ path("modifier",{"id":formation.id}) }}" class="btn btn-outline-warning" role="button" aria-pressed="true">Modifier</a>
+                     <a href="{{  path("suprimer",{"id":formation.id}) }}" class="btn btn-outline-danger" role="button" aria-pressed="true">Suprimer</a></td>
+                </tr>
+
+
+                {% endfor %}
+            </tbody>
+
+
+
+        <tbody id="searchTTT">
+
+
+
+
+        </tbody>
+
+
+</table>
+    </div>
+    <br />
+
+    <td> <a href="{{ path("ajouterf") }}" class="btn btn-outline-success" role="button" aria-pressed="true">Ajouter</a></td>
+
+        <style>
+            h1 {
+                background: linear-gradient(to right, #36ecde, #000);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searchformation') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#searchTTT').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                var unixTimestamp = obj.dateDeb.timestamp;
+
+                                var milliseconds = unixTimestamp * 1000 // 1575909015000
+
+                                var current_date = new Date(milliseconds).toLocaleDateString('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'});
+
+                                $('#tableFormation').hide();
+                                $('#searchTTT').append('<tr><td> '+obj.nom+'  </td><td> '+current_date+'  </td><td> '+obj.prix+'  </td><td>    '+obj.nbrPartricipant+'  </td><td>'+obj.nbrHeures+' </td><td><img height="70px" width="100px" src="/uploads/images/'+obj.image+'"></td> <td><a class="btn btn-outline-warning" href="modifierformation/'+obj.id+'">modifier</a> <a class="btn btn-outline-danger" href="suprimerformation/'+obj.id+'">supprimer</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#tableFormation').show();
+                            $('#searchTTT').empty();
+                            $('#searchTTT').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+
+{% endblock %}

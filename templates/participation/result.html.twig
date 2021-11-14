@@ -1,0 +1,40 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <style>
+        fieldset {
+            background-color: #eeeeee;
+        }
+
+        legend {
+            background-color: gray;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        input {
+            margin: 5px;
+        }
+    </style>
+<div class="cust-heading" id="resultid" name="resultid">
+    <h1> Resultat {{ p.id }} :</h1>
+    <fieldset>
+        <legend><h3>Quiz N°: {{ p.quiz.id }}</h3></legend>
+            <p> Nom Candidat : </p> {{ p.user.nom }} {{ p.user.prenom}} <br>
+            <p> Email Candidat : </p> {{ p.user.email }} <br>
+            <p> Titre de quiz : </p> {{ p.quiz.titre }} <br>
+            <p> Societe : </p> {{ p.quiz.owner }} <br>
+            <p> Pourcentage obtenu :</p>  {{ p.note|round(1, 'floor') }}% <br>
+        {% if p.note>50 %}
+        <p> Observation :</p> <div class="alert-success"> En attente d'entretient. </div>
+        {% else %}
+        <p> Observation :</p> <div class="alert-danger"> note insuffisante. </div>
+{% endif %}
+        <a href="{{ path ('imprimer',{'id':p.id}) }}">
+            <button class="btn btn-primary"><i class="fa fa-print"></i>  Imprimer Resultat</button>
+        </a>
+
+
+    </fieldset>
+</div>
+
+{% endblock %}

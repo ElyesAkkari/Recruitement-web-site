@@ -1,0 +1,44 @@
+{% extends 'testing.html.twig' %}
+
+
+
+{% block content %}
+
+    <body>
+    <div class="container">
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+                <div class="row">
+
+        <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4">
+
+
+                <form class="login100-form validate-form" action="{{ path('login') }}" method="post">
+					<span class="login100-form-title p-b-33">
+						Account Login
+					</span>
+                    <br/>
+                    <br/>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="email" required name="_username" type="text">
+                            <br/>
+                            <input class="form-control" placeholder="password" required name="_password" type="password" >
+                        </div>
+                        <div >
+                            <button class="btn btn-info" type="submit">
+                                Login
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</div>
+
+{% endblock %}

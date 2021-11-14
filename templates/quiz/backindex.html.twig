@@ -1,0 +1,52 @@
+{% extends 'back.html.twig' %}
+{% block content %}
+
+ <div class="right_col">
+   <div class="container">
+       <div class="page-title">
+           <div class="title_left">
+               <h3>Liste des Quiz :</h3>
+           </div>
+       </div>
+
+        <div class="col-md">
+            <form action="#" method="get">
+                <div class="input-group" autocomplete="off">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control" id="system-search" name="q" placeholder="Chercher" >
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+ <div class="col-md">
+            <table class="table table-bordered table-list-search" >
+                <thead>
+                <tr align="center">
+                    <th scope="col">Titre</th>
+                    <th scope="col">Creer par</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for qz in quizs %}
+                <tr>
+                    <td>{{ qz.titre}}</td>
+                    <td>{{qz.owner}} </td>
+                    <td>
+                        <a href="{{ path ('backexemple',{'id':qz.id}) }}"><button class="btn btn-outline-success" title="preview quiz"> <i class="fa fa-eye"> Visualisez Quiz</i></button></a>
+
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    {{ knp_pagination_render(quizs) }}
+        </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

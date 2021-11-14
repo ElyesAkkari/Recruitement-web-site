@@ -1,0 +1,21 @@
+
+
+
+  {{ form_start(f, {'attr':{'novalidate':'novalidate'}}) }}
+       <table>
+        <tr><td>Nom: </td><td>{{ form_widget(f.nom) }}</td></tr>
+        <tr><td>Prenom: </td><td>{{ form_widget(f.prenom) }}</td></tr>
+        <tr><td>Carte d'identité: </td><td>{{ form_widget(f.cin) }}</td></tr>
+        <tr><td>Email: </td><td>{{ form_widget(f.email) }}</td></tr>
+         <tr><td>Num Tel: </td><td>{{ form_widget(f.numtel) }}</td></tr>
+          <tr><td>Adresse: </td><td>{{ form_widget(f.adresse) }}</td></tr>
+            <tr><td>password: </td><td>{{ form_widget(f.psw) }}</td></tr>
+          <tr><td>Role: </td><td>{{ form_widget(f.role) }}</td></tr>
+
+    </table>
+
+{{ form_end(f) }}
+
+
+
+{# {'attr':{'class':'form-control'}} #}

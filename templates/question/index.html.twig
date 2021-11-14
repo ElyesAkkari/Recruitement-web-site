@@ -1,0 +1,91 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+
+    <style>
+        .resume{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+    <div class="resume">
+        <div>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('update') %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('delete') %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>Liste des Questions</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <form action="#" method="get" autocomplete="off">
+                <div class="input-group">
+                    <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                    <input class="form-control" id="system-search" name="q" placeholder="Chercher">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="col" align="center" >
+    <table border="1" class="table table-striped table-hover table-secondary table-list-search">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">body</th>
+                <th scope="col">nbr rep</th>
+                <th scope="col">quiz</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for qst in questions %}
+
+                <tr>
+                    <td>{{ qst.body}}</td>
+                    <td>{{ qst.nbrrep }}</td>
+                    <td>
+                        {% if qst.quiz != null %}
+                        {{ qst.quiz.titre }}
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ path ('editQuest',{'id':qst.id}) }}"><button class="btn btn-info" title="edit question"><i class="fa fa-edit"></i></button></a>
+                        <a href="{{ path ('deleteQuest',{'id':qst.id}) }}"><button class="btn btn-danger" onclick="myFunction()"> <i class="fa fa-trash" title="delete question"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        </table>
+            {{ knp_pagination_render(questions) }}
+            <a href="{{ path('addQuest') }}"> <button class="btn btn-primary" title="add question"><i class="fa fa-plus-circle"></i> Ajouter Une quesion</button></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

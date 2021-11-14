@@ -1,0 +1,224 @@
+
+{% extends 'testing.html.twig' %}
+{% block content %}
+<!-- Page Content -->
+<div class="page-heading about-heading header-text" style="background-image: url(/eltemp/assets/images/heading-6-1920x500.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <h2>Jobs</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="contact-form">
+                    <form action="#">
+                        <h5 style="margin-bottom: 15px">Type</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Contract (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Full time (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Internship (5)</small>
+                            </label>
+                        </div>
+
+                        <br>
+
+                        <h5 style="margin-bottom: 15px">Category</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Accounting / Finance / Insurance Jobs (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Accounting / Finance / Insurance Jobs (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Accounting / Finance / Insurance Jobs (5)</small>
+                            </label>
+                        </div>
+
+                        <br>
+
+                        <h5 style="margin-bottom: 15px">Career levels</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Entry Level (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Entry Level (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Entry Level (5)</small>
+                            </label>
+                        </div>
+
+                        <br>
+
+                        <h5 style="margin-bottom: 15px">Education levels</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Associate Degree (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Associate Degree (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>Associate Degree (5)</small>
+                            </label>
+                        </div>
+
+                        <br>
+
+
+                        <h5 style="margin-bottom: 15px">Years of experience</h5>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>&lt; 1 (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>&lt; 1 (5)</small>
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="checkbox">
+
+                                <small>&lt; 1 (5)</small>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-9">
+                <form method="get" action="/ajouteroffre">
+                    <button class="btn btn-primary" type="submit">créer offre</button>
+                </form>
+
+
+            <div class="row">
+                {% for f in formations%}
+                    <div class="col-md-6 ">
+
+
+                        <div class="product-item ">
+
+                              <img style="height:200px; width:340px" src="/assets/images/properties/{{ f.imageName}}" alt="" >
+
+                            <div class="down-content">
+                                <a ><h4 align="center">{{ f.type }}</h4></a>
+
+                                <a ><h4 align="center">{{ f.noms}}</h4></a>
+                                <a ><h4>{{ f.mailen}}</h4></a>
+
+                                <h4><small><strong>
+                                            <i class="fa fa-building"></i>
+                                    {{ f.departement }}</strong></small></h4>
+
+                                <small>
+
+                                    <strong><a title="Type" href="{{ path("commentaire",{"id":f.id}) }}"><i class="fa fa-file" ></i> detaille</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><a href="{{ path ('delete',{'id':f.id}) }}"><i  class="fa fa-trash"></i> Supprimer</a></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong><a href="{{ path("editoffre",{"id":f.id}) }}"><i class="fa fa-edit"></i>edit</a></strong>
+
+                                </small>
+                            </div>
+
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+
+                    <div class="col-md-12">
+                        <ul class="">
+                            {{ knp_pagination_render(formations) }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+

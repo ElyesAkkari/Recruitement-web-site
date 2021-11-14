@@ -1,0 +1,534 @@
+{% extends 'back.html.twig' %}
+
+{% block notification %}
+
+<style>
+
+    .pagination {
+        margin: 0;
+    }
+    .pagination li:hover{
+        cursor: pointer;
+    }
+    .header_wrap {
+        padding:30px 0;
+    }
+    .num_rows {
+        width: 20%;
+        float:left;
+    }
+    .tb_search{
+        width: 20%;
+        float:right;
+    }
+
+    #ceo th.asc:after {
+        display: inline;
+        content: '↓';
+    }
+    #ceo th.desc:after {
+        display: inline;
+        content: '↑';
+    }
+    #ceo td {
+        background: #ccc;
+    }
+    .pagination-container {
+        width: 70%;
+        float:left;
+    }
+    .rows_count {
+        width: 20%;
+        float:right;
+        text-align:right;
+        color: #999;
+    }
+
+    .show-on-hover:hover > ul.dropdown-menu {
+        display: block;
+    }
+    .list-notificacao{
+        min-width: 400px;
+
+        background: #ffffff;
+    }
+    .list-notificacao li{
+        border-bottom : 1px #d8d8d8 solid;
+        text-align    : justify;
+        padding       : 5px 10px 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    .list-notificacao li:hover{
+        background: #f1eeee;
+    }
+    .list-notificacao li:hover .exclusaoNotificacao{
+        display: block;
+    }
+    .list-notificacao li  p{
+        color: black;
+        width: 305px;
+    }
+    .list-notificacao li .exclusaoNotificacao{
+        width: 25px;
+        min-height: 40px;
+        position: absolute;
+        right: 0;
+        display: none;
+    }
+    .list-notificacao .media img{
+        width: 40px;
+        height: 40px;
+        float:left;
+        margin-right: 10px;
+    }
+    .badgeAlert {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        vertical-align: baseline;
+        white-space: nowrap;
+        text-align: center;
+        background-color: #d9534f;
+        border-radius: 10px;
+        position: absolute;
+        margin-top: -10px;
+        margin-left: -10px
+    }
+
+
+</style>
+
+    <nav class="nav navbar-nav">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="alertNotificacao"><i class="fa fa-inbox" style="font-size: 1.5em"></i></span>
+            <span class="badgeAlert" id="count">{{ mgilet_notification_unseen_count(notifiableEntity) }}</span>
+            <span class="caret"></span></a>
+        <ul class="list-notificacao dropdown-menu" >
+            {%  set var=0 %}
+            {% for notifiableNotification in notifiableNotifications %}
+                {% if notifiableNotification.seen==0 %}
+                    {% set var=var+1 %}
+                    <li id='item_notification_{{ var }}'>
+                        <div class="media">
+                            <div class="media-left">
+                                <i class="fa fa-bell" style="font-size: 3.5em"></i>
+                            </div>
+                            <div class="media-body">
+                                <form action="{{ mgilet_notification_generate_path('notification_mark_as_seen', notifiableNotification.notifiableEntity, notifiableNotification.notification) }}"
+                                      method="post">
+                                    <div class="exclusaoNotificacao"><button  class="btn btn-danger btn-xs button_exclusao" id="{{ var }}" onclick="excluirItemNotificacao(this)">x</button>
+                                    </div>
+                                </form>
+
+                                <h4 class="media-heading">{{  notifiableNotification.notification.subject }}</h4>
+                                <p>{{  notifiableNotification.notification.message }}</p>
+                            </div>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
+{% block content %}
+    <!-- page content -->
+<div class="right_col" role="main">
+    <div align="center">
+        <div class="col" style="display: inline-block;">
+
+            <div class="col-md-12">
+                <div class="dashboard_graph">
+                    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Entretien </h3>
+            {% for message in app.flashes('info') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="search-bar p-0 d-none d-md-block ms-2">
+            <div id="search" class="menu-search mb-0">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Recherche" required>
+                        <span class="input-group-btn">
+                                          <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                                            </span>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                <div class="input-group">
+                                        <span class="input-group-btn">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row" style="display: block;">
+        <div >
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="header_wrap">
+                        <div class="rows">
+                            <div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
+                                <select style="width: 20%;" class  ="form-control" name="state" id="maxRows">
+
+
+                                    <option value="50">Tout</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table   id= "table-id" class="table table-list-search">
+                            <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Recruteur</th>
+                                <th scope="col">Resultat</th>
+                                <th scope="col">Temps</th>
+                                <th scope="col">Numero Tel Candidat</th>
+
+                                <th scope="col">Mail Candidat</th>
+                                <th scope="col">Etat</th>
+                                <th scope="col">Action</th>
+
+                            </tr>
+                            </thead>
+                            {% for e in entretient %}
+                                <tr>
+                                    <td>{{ e.datedeb|date("d/m/Y") }}</td>
+                                    <td>{{ e.recruteur }}</td>
+                                    <td>{{ e.resultat }}</td>
+                                    <td>{{ e.temps|date("h:i:s") }}</td>
+                                    <td> {{ e.NumeroTelephone }}</td>
+
+                                    <td>{{ e.mail }}</td>
+                                    <td>{{ e.etat }}</td>
+                                    <td>
+                                        <a href="{{ path ('deleteEntBack',{'id':e.id}) }}"><button class="btn btn-danger"> <i class="fa fa-trash" title="delete question"></i></button></a>
+                                        </button></a>
+
+
+                                    </td>
+
+
+                                </tr>
+
+                            {% endfor %}
+                        </table>
+
+
+
+
+                        <!--		Start Pagination -->
+                        <div class='pagination-container'>
+                            <nav>
+                                <ul class="pagination">
+                                    <!--	Here the JS Function Will Add the Rows -->
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="rows_count"></div>
+
+                    </div>
+                </div>
+                <!-- 		End of Container -->
+
+
+                <a href="{{ path('addEntretientBack') }}"> <button class="btn btn-primary" title="add question"><i class="fa fa-plus-circle"></i> Ajouter</button></a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+</div>
+
+
+<!-- /page content -->
+
+<!-- footer content -->
+<footer>
+    <div class="clearfix"></div>
+</footer>
+<!-- /footer content -->
+
+{% block js %}
+    <!-- jQuery -->
+    <script src="{{ asset("../vendors/jquery/dist/jquery.min.js") }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset("../vendors/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+    <!-- FastClick -->
+    <script src="{{ asset("../vendors/fastclick/lib/fastclick.js") }}"></script>
+    <!-- NProgress -->
+    <script src="{{ asset("../vendors/nprogress/nprogress.js") }}"></script>
+    <!-- Chart.js -->
+    <script src="{{ asset("../vendors/Chart.js/dist/Chart.min.js") }}"></script>
+    <!-- gauge.js -->
+    <script src="{{ asset("../vendors/gauge.js/dist/gauge.min.js") }}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{{ asset("../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js") }}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset("../vendors/iCheck/icheck.min.js") }}"></script>
+    <!-- Skycons -->
+    <script src="{{ asset("../vendors/skycons/skycons.js") }}"></script>
+    <!-- Flot -->
+    <script src="{{ asset("../vendors/Flot/jquery.flot.js") }}"></script>
+    <script src="{{ asset("../vendors/Flot/jquery.flot.pie.js") }}"></script>
+    <script src="{{ asset("../vendors/Flot/jquery.flot.time.js") }}"></script>
+    <script src="{{ asset("../vendors/Flot/jquery.flot.stack.js") }}"></script>
+    <script src="{{ asset("../vendors/Flot/jquery.flot.resize.js") }}"></script>
+    <!-- Flot plugins -->
+    <script src="{{ asset("../vendors/flot.orderbars/js/jquery.flot.orderBars.js") }}"></script>
+    <script src="{{ asset("../vendors/flot-spline/js/jquery.flot.spline.min.js") }}"></script>
+    <script src="{{ asset("../vendors/flot.curvedlines/curvedLines.js") }}"></script>
+    <!-- DateJS -->
+    <script src="{{ asset("../vendors/DateJS/build/date.js") }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset("../vendors/jqvmap/dist/jquery.vmap.js") }}"></script>
+    <script src="{{ asset("../vendors/jqvmap/dist/maps/jquery.vmap.world.js") }}"></script>
+    <script src="{{ asset("../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js") }}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="{{ asset("../vendors/moment/min/moment.min.js") }}"></script>
+    <script src="{{ asset("../vendors/bootstrap-daterangepicker/daterangepicker.js") }}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{{ asset("../build/js/custom.min.js") }}"></script>
+
+
+    <!-- Load jQuery from Google's CDN if needed -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+
+
+    <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.dropdown-toggle').dropdown()
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var activeSystemClass = $('.list-group-item.active');
+
+            //something is entered in search form
+            $('#system-search').keyup( function() {
+                var that = this;
+                // affect all table rows on in systems table
+                var tableBody = $('.table-list-search tbody');
+                var tableRowsClass = $('.table-list-search tbody tr');
+                $('.search-sf').remove();
+                tableRowsClass.each( function(i, val) {
+
+                    //Lower text for case insensitive
+                    var rowText = $(val).text().toLowerCase();
+                    var inputText = $(that).val().toLowerCase();
+                    if(inputText != '')
+                    {
+                        $('.search-query-sf').remove();
+                        tableBody.prepend('<tr class="search-query-sf"><strong>Searching for: "'
+                            + $(that).val()
+                            + '"</strong></tr>');
+                    }
+                    else
+                    {
+                        $('.search-query-sf').remove();
+                    }
+
+                    if( rowText.indexOf( inputText ) == -1 )
+                    {
+                        //hide rows
+                        tableRowsClass.eq(i).hide();
+
+                    }
+                    else
+                    {
+                        $('.search-sf').remove();
+                        tableRowsClass.eq(i).show();
+                    }
+                });
+                //all tr elements are hidden
+                if(tableRowsClass.children(':visible').length == 0)
+                {
+                    tableBody.append('<td class="search-sf">Aucune resultat.</td>');
+                }
+            });
+        });
+
+    </script>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        //PAgination and show entries rows metiers (deux metiers)
+        getPagination('#table-id');
+        $('#maxRows').trigger('change');
+        function getPagination (table){
+            $('#maxRows').on('change',function(){
+                $('.pagination').html('');						// reset pagination div
+                var trnum = 0 ;									// reset tr counter
+                var maxRows = parseInt($(this).val());			// get Max Rows from select option
+                var totalRows = $(table+' tbody tr').length;		// numbers of rows
+                $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
+                    trnum++;									// Start Counter
+                    if (trnum > maxRows ){						// if tr number gt maxRows
+                        $(this).hide();							// fade it out
+                    }if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+                });											//  was fade out to fade it in
+                if (totalRows > maxRows){						// if tr total rows gt max rows option
+                    var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
+                    //	numbers of pages
+                    for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+                        $('.pagination').append('<li style="color: black;floa" data-page="'+i+'">\
+								      <span style="     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1)">'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+                    }											// end for i
+                } 												// end if row count > max rows
+                $('.pagination li:first-child').addClass('active'); // add active class to the first li
+                //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+                showig_rows_count(maxRows, 1, totalRows);
+                //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+                $('.pagination li').on('click',function(e){		// on click each page
+                    e.preventDefault();
+                    var pageNum = $(this).attr('data-page');	// get it's number
+                    var trIndex = 0 ;							// reset tr counter
+                    $('.pagination li').removeClass('active');	// remove active class from all li
+                    $(this).addClass('active');					// add active class to the clicked
+                    //SHOWING ROWS NUMBER OUT OF TOTAL
+                    showig_rows_count(maxRows, pageNum, totalRows);
+                    //SHOWING ROWS NUMBER OUT OF TOTAL
+                    $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
+                        trIndex++;								// tr index counter
+                        // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+                        if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+                            $(this).hide();
+                        }else {$(this).show();} 				//else fade in
+                    }); 										// end of for each tr in table
+                });										// end of on click pagination list
+            });
+            // end of on select change
+            // END OF PAGINATION
+        }
+        //ROWS SHOWING FUNCTION
+        function showig_rows_count(maxRows, pageNum, totalRows) {
+            //Default rows showing
+            var end_index = maxRows*pageNum;
+            var start_index = ((maxRows*pageNum)- maxRows) + parseFloat(1);
+            var string = 'Showing '+ start_index + ' to ' + end_index +' of ' + totalRows + ' entries';
+            $('.rows_count').html(string);
+        }
+        // // CREATING INDEX
+        // function default_index() {
+        //     $('table tr:eq(0)').prepend('<th> <Objet></Objet> </th>')
+        //
+        //     var id = 0;
+        //
+        //     $('table tr:gt(0)').each(function(){
+        //         id++
+        //         $(this).prepend('<td>'+id+'</td>');
+        //     });
+        // }
+        // All Table search script
+        function FilterkeyWord_all_table() {
+// Count td if you want to search on all table instead of specific column
+            var count = $('.table').children('tbody').children('tr:first-child').children('td').length;
+            // Declare variables
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("search_input_all");
+            var input_value =     document.getElementById("search_input_all").value;
+            filter = input.value.toLowerCase();
+            if(input_value !=''){
+                table = document.getElementById("table-id");
+                tr = table.getElementsByTagName("tr");
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 1; i < tr.length; i++) {
+                    var flag = 0;
+                    for(j = 0; j < count; j++){
+                        td = tr[i].getElementsByTagName("td")[j];
+                        if (td) {
+                            var td_text = td.innerHTML;
+                            if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                                //var td_text = td.innerHTML;
+                                //td.innerHTML = 'shaban';
+                                flag = 1;
+                            } else {
+                                //DO NOTHING
+                            }
+                        }
+                    }
+                    if(flag==1){
+                        tr[i].style.display = "";
+                    }else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }else {
+                //RESET TABLE
+                $('#maxRows').trigger('change');
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% endblock %}

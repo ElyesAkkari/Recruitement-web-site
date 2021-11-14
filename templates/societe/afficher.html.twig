@@ -1,0 +1,58 @@
+{% extends 'back.html.twig' %}
+
+
+{% block content %}
+  <div class="right_col">
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div class="container">
+<div class="row">
+
+    <div class="col-md">
+<table class="table table-bordered table-list-search" >
+    <thead>
+    <tr align="center">
+        <th>nom</th>
+        <th>Matricule Fiscale</th>
+        <th>Site Web</th>
+          <th>Logo</th>
+            <th>Description </th>
+                <th><em class="fa fa-cog center"></em></th>
+                </tr>
+    </thead>
+    {% for societe in societes %}
+        <tbody>
+        <tr align="center">
+            <td>{{ societe.nom }}</td>
+            <td>{{ societe.matriculefiscale }}</td>
+            <td>{{ societe.siteweb }}</td>
+            <td>{{ societe.logo }}</td>
+            <td>{{ societe.description }}</td>
+           
+<td>
+             <a class="btn rounded-pill btn-dark" ><em class="fa fa-pencil"></em></a>
+             <a class="btn rounded-pill btn-danger" ><em class="fa fa-trash"></em></a>
+
+
+</td>
+</tr>
+        </tbody>
+    {% endfor %}
+</table>
+
+</div>
+
+
+</div>
+</div>
+
+
+</div>
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+{% endblock %}
+

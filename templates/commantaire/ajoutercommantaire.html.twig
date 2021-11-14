@@ -1,0 +1,147 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+ <div class="page-heading about-heading header-text" style="background-image: url(/eltemp/assets/images/heading-6-1920x500.jpg);">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <div class="text-content">
+      <h4>Formation :</h4>
+      <h2>{{formation.nom }}</h2>
+      <div>
+       {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+        </div>
+       {% endfor %}
+       {% for message in app.flashes('update') %}
+        <div class="alert alert-success alert-dismissible fade show">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+        </div>
+       {% endfor %}
+       {% for message in app.flashes('delete') %}
+        <div class="alert alert-danger alert-dismissible fade show">
+         {{ message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+         </button>
+        </div>
+       {% endfor %}
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="products">
+  <div class="container">
+   <div class="row">
+    <div class="col-md-7 col-sm-8">
+     <p class="lead">
+      <i class="fa fa-calendar"></i> {{ formation.datedeb|date("m/d/Y") }}
+     </p>
+
+     <br>
+     <br>
+
+     <div class="form-group">
+      <h5>le nembre des participants : {{formation.nbrpartricipant}}</h5>
+      <h5>le nembre d'heures : {{formation.nbrheures}}</h5>
+     </div>
+     <h5>Description : </h5>
+     <p>{{formation.descrption}}</p>
+     <div class="card " style="margin-bottom: 20px">
+      {{ form_start(comment) }}
+      <div   class="input-group">
+       {{ form_widget(comment.body ) }}
+      </div>
+      <br>
+      {{ form_widget(comment.commenter, { 'attr' : { 'class' : 'appsLand-btn subscribe-btn ' } } ) }}
+      {{ form_end(comment) }}
+     </div>
+     <br>
+     <br>
+    </div>
+
+    <div class="col-md-5 col-sm-4">
+     <div>
+      <img class="img-fluid wc-image" src="{{ asset('uploads/images/') }}{{formation.image}}" alt="formation" >
+
+      {{ form_start(participant,{'attr':{'novalidate':'novalidate'}}) }}
+      {{ form_widget(participant.Participer,{'attr':{'class':'btn btn-primary a-btn-slide-text','style':'width : 100%'}}) }}
+      {{ form_end(participant) }}
+     </div>
+
+     <br>
+     <br>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="section">
+  <div class="container">
+   <div class="row">
+    <!-- column -->
+    <div class="col-md-9">
+     <div class="card">
+      <div class="card-body">
+       <h4 class="card-title">Recent Comments</h4>
+      </div>
+      <div class="comment-widgets scrollable">
+
+       <!-- Comment Row -->
+       {% for comment in formation.commantaires %}
+        <div class="d-flex flex-row comment-row">
+
+         <div class="active w-100" style="padding: 10px">
+          <h6 class="font-medium" style="color: blue">{{ app.user.username }} :</h6>
+          <span class="m-b-15 d-block">{{ comment.body }}</span>
+          <div class="comment-footer">
+           <td>{{ comment.created|date("Y-m-d H:i:s") }}</td>
+
+
+          </div>
+         </div>
+        </div>
+       {%endfor%}
+      </div>
+    {#   <div class="panel-footer">
+       {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+       <div class="input-group">
+
+        {#  <input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." />
+        {{ form_widget(form.message,{'attr': {'class': 'form-control input-md','placeholder':'ecrire votre commentaire'}}) }} <span class="input-group-btn">
+                                                      {{ form_errors(form.message )}}
+
+
+                                                    <button class="btn btn-primary btn-md" id="btn-chat">Send</button>
+
+                                                    </span>
+
+       </div>
+       {{ form_end(form) }}
+      </div>
+    #}
+     </div>
+    </div>
+
+
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+
+
+
+
+
+{% endblock %}

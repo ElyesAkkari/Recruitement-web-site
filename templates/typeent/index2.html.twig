@@ -1,0 +1,66 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <style>
+        .resume{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+    <div class="resume">
+    <div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('update') %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('delete') %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-content">
+                <h4>Liste des Types</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col" align="center">
+        <table class="table table-hover table-secondary">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Entretient</th>
+                <th scope="col">titre</th>
+                <th scope="col">description</th>
+
+            </tr>
+            </thead>
+            {% for t in typeent %}
+                <tr>
+                    <td>{{ t.entretient.id}}</td>
+                    <td>{{ t.titre }}</td>
+                    <td>{{ t.description }}</td>
+
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+{% endblock %}

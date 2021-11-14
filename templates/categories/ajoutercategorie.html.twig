@@ -1,0 +1,19 @@
+{% extends "back.html.twig" %}
+{% block content %}
+<div class="right_col">
+    <div class="container">
+        <div class="col-md">
+            <h1>Ajouter une Categorie</h1>
+            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+    <style>
+        h1 {
+            background: linear-gradient(to right, #36ecde, #000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+{% endblock %}

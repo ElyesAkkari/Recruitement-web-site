@@ -1,0 +1,131 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="page-heading contact-heading header-text" style="background-image: url(eltemp/assets/images/heading-4-1920x500.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+
+                        <h2>créer votre offre</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="send-message">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>créer  un offre </h2>
+
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        <!--<input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">-->
+
+
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        {#  <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">#}
+                                        {{ form_widget(form.noms,{'attr': {'class': 'form-control','placeholder':'nom de votre entreprise'}}) }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <fieldset>
+
+                                        {#  <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required="">#}
+                                        {{ form_widget(form.type,{'attr': {'class': 'form-control','placeholder':'type de votre offre '}}) }}
+                                        {{ form_errors(form.type) }}
+                                    </fieldset>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {#  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>#}
+                                        {{ form_widget(form.description,{'attr': {'class': 'form-control','placeholder':'description'}}) }}
+                                    </fieldset>
+                                </div>
+
+                                <div>
+                                    <fieldset>
+                                        <a>date debut </a>{{ form_widget(form.datedeb) }}
+                                    </fieldset>
+                                </div>
+                                <div>
+                                    <fieldset>
+                                        <a>date fin  </a>{{ form_widget(form.datefin) }}
+                                    </fieldset>
+                                </div>
+
+
+
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ form_widget(form.mailen,{'attr': {'class': 'form-control','placeholder':'votre mail '}}) }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                    {#  <input type="file" name="fileToUpload" id="fileToUpload" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-icon="false">#}
+                                    {{ form_widget(form.imageFile,{'attr': {'class': 'form-control','placeholder':'choisir une image '}}) }}
+
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ form_widget(form.departement,{'attr': {'class': 'form-control','placeholder':'le departement de votre offre '}}) }}
+                                    </fieldset>
+                                </div>
+
+
+                                <div>
+
+                                </div>
+                                <div class="col-lg-12">
+                                    {{ form_row(form.captchaCode) }}
+                                    <fieldset>
+
+                                        <button onclick="noti()" type="submit"  id="form-submit" class="filled-button">Send Message</button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                      {{ form_end(form) }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ asset('vendors/scripts/push.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/scripts/serviceWorker.min.js') }}"></script>
+
+    <script>
+        function noti(){
+
+            Push.create(" Notification  :",{
+                body: "offre bien ajouté  ! : ",
+                timeout: 10000,
+
+
+            });
+
+        };
+    </script>
+
+
+{% endblock %}

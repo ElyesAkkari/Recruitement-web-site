@@ -1,0 +1,82 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+<style>
+  .resume{
+      text-align: center;
+  }
+  h3{
+      color: red;
+  }
+</style>
+    {% if em is empty %}
+    <div class="resume">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Erreur !</h4>
+            <p>Aucune saisie n'a ete effectuée!</p>
+            <hr>
+            <p class="mb-0" align="right" ><button class="btn btn-outline-danger" onclick="goBack()">Retour</button></p>
+        </div>
+    </div>
+    {% else %}
+    <div class="resume" >
+        <h3>Liste des Participations QUIZ : {{ nomquiz}}  <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Trié par ...
+                </button>
+                <div class="dropdown-menu">
+
+                    <a class="dropdown-item" href="{{ path('ppqnotedesc',{'id':quiz.id}) }}">Pourcentage decroissant </a>
+                    <a class="dropdown-item" href="{{ path('ppqnoteasc',{'id':quiz.id}) }}">Pourcentage Croissant</a>
+
+                </div>
+            </div></h3>
+
+
+            <div class="col" align="center" >
+
+
+
+                <table border="1" class="table table-striped table-hover table-secondary">
+                    <tr>
+                        <th scope="col">Participant</th>
+                        <th scope="col">Quiz</th>
+                        <th scope="col">Ajouté le :</th>
+                        <th scope="col">Pourcentage</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    <tbody>
+                    {% for qst in em %}
+                        <tr>
+                        {% if  qst.quiz != null and qst.user !=null %}
+                            <td>{{ qst.user.email}}</td>
+                            <td>{{ qst.quiz.titre }}</td>
+                            <td>{{ qst.added|date("d/m/Y")}}</td>
+                                {% if qst.note > 50 %}
+                                    <td><p align="center"> <button class="btn btn-success " disabled>{{ qst.note }}%</button></p></td>
+                                   <td><a href="{{ path ('addEntretient') }}"><button class="btn btn-outline-success" title="edit question">Planifier Entretien </button></a>
+                                    <a href="{{ path ('archiveParticipation',{'id':qst.id}) }}"><button class="btn btn-outline-secondary"><i class="fa fa-archive" title="archiver ce participant"></i> Archivé</button></a>
+                                   </td>
+                                {% elseif qst.note <50 and qst.note > 40 %}
+                                    <td><p align="center"> <button class="btn btn-warning" disabled>{{ qst.note }}%</button></p></td>
+                                   <td> <a href="{{ path ('archiveParticipation',{'id':qst.id}) }}"><button class="btn btn-outline-secondary"><i class="fa fa-archive" title="archiver ce participant"></i> Archivé</button></a>
+                                    </td>
+                                {% else %}
+                                    <td><p align="center"> <button class="btn btn-danger" disabled>{{ qst.note }}%</button></p></td>
+                                    <td> <a href="{{ path ('archiveParticipation',{'id':qst.id}) }}"><button class="btn btn-outline-secondary"><i class="fa fa-archive" title="archiver ce participant"></i> Archivé</button></a>
+                                    </td>
+                                {% endif %}
+
+                        {% endif %}
+
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {{ knp_pagination_render(em) }}
+
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

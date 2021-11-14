@@ -1,26 +1,192 @@
-{% extends 'logTemp.html.twig' %}
+{% extends 'testing.html.twig' %}
+
+
 {% block content %}
-<title> Login </title>
-<!-- Page Content -->
-<div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-                <form class="login100-form validate-form" action="{{ path('login') }}" method="post">
-					<span class="login100-form-title p-b-33">
-						Account Login
-					</span>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="email" required name="_username" type="text" class="form-control">
-                            <input class="form-control" placeholder="mdp" required name="_password" type="password" class="form-control">
+
+
+
+    <body>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+
+    <div class="container">
+
+        {% for message in app.flashes('warninig') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('message')%}
+            <div id="hideDiv" class="alert alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger')%}
+            <div id="hideDiv" class="alert alert-danger">
+                {{message}}
+            </div>
+        {% endfor %}
+
+
+
+        <div class="row py-5  mt-4 align-items-center">
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <h1>Create an Account</h1>
+                <p class="font-italic text-muted mb-0">Create a minimal registeration page using Bootstrap 4 HTML form elements.</p>
+                <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
+                        <u>Bootstrapious</u></a>
+                </p>
+            </div>
+
+            <div class="col-md-7 col-lg-6 ml-auto">
+                <form method="post">
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
                         </div>
-                        <div class="container-login100-form-btn m-t-20">
-                            <button class="login100-form-btn" type="submit">
-                                Login
-                            </button>
+                        <input id="inputEmail" type="email"  name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" required autofocus />
+                    </div>
+
+
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
                         </div>
+                        <input id="inputPassword" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" required />
+                    </div>
+
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                        <button type="submit" class="btn btn-primary btn-block py-2">
+                            <span class="font-weight-bold">Login</span>
+                        </button>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"  value="{{ csrf_token('authenticate') }}" />
+
+
+
                 </form>
+                <br/>
+                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+
+                    <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
+
+                </div>
+
+                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                    <div class="border-bottom w-100 ml-5"></div>
+                    <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                    <div class="border-bottom w-100 mr-5"></div>
+                </div>
+
+
+                <!-- Social Login -->
+                <div class="form-group col-lg-12 mx-auto">
+                    <a href="{{ path('connect_facebook_start')}}" class="btn btn-primary btn-block py-2 btn-facebook">
+                        <i class="fa fa-facebook-f mr-2"></i>
+                        <span class="font-weight-bold">Continue with Facebook</span>
+                    </a>
+                    <a href="{{ path('connect_google_start')}}" class="btn btn-primary btn-block py-2 btn-google">
+                        <i class="fa fa-google mr-2"></i>
+                        <span class="font-weight-bold">Continue with Google</span>
+                    </a>
+                </div>
+
             </div>
         </div>
-</div>
+    </div>
+
+    </body>
+
+
+    <style>
+        /*
+        *
+        * ==========================================
+        * CUSTOM UTIL CLASSES
+        * ==========================================
+        *
+        */
+
+        .border-md {
+            border-width: 2px;
+        }
+
+        .btn-facebook {
+            background: #405D9D;
+            border: none;
+        }
+
+        .btn-facebook:hover, .btn-facebook:focus {
+            background: #314879;
+        }
+
+        .btn-google {
+            color: #545454;
+            background-color: #ffffff;
+            box-shadow: 0 1px 2px 1px #ddd;
+            border: none;
+        }
+
+        .btn-google:hover, .btn-google:focus {
+            background: #fb404b;
+        }
+
+
+
+        /*
+        *
+        * ==========================================
+        * FOR DEMO PURPOSES
+        * ==========================================
+        *
+        */
+
+        body {
+            min-height: 100vh;
+        }
+
+        .form-control:not(select) {
+            padding: 1.5rem 0.5rem;
+        }
+
+        select.form-control {
+            height: 52px;
+            padding-left: 0.5rem;
+        }
+
+        .form-control::placeholder {
+            color: #ccc;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+
+
+    </style>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(function () {
+            setTimeout(function () {
+                $("#hideDiv").fadeOut(1500);
+            }, 3000);
+        });
+    </script>
 
 {% endblock %}

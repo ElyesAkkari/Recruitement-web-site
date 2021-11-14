@@ -1,0 +1,69 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <style>
+        fieldset{
+            border: 2px groove #caf7e3;
+
+
+            margin-left: 2px;
+            margin-right: 2px;
+            margin-bottom: 15px;
+
+            padding: 0.35em 5px 0.625em 5px;
+
+        }
+        legend {
+            height: 50%;
+            width: auto;
+
+            margin-left: 45%;
+            padding: 2px 1px 2px 1px;
+
+        }
+    </style>
+    <div class="cust-heading">
+    <div class="col-md-12">
+{% set foo = 1 %}
+{% set numr = 0 %}
+<form method="post" action="{{ path('quiznote') }}" >
+    <input type="hidden" value={{ quiz.id }} name="quiz" id="quiz">
+    <input type="hidden" value={{ app.user.id }} name="user" id="user">
+    <input type="hidden" value="{{ offre.id }}" name="offre">
+
+        {% for q in question %}
+    <fieldset >
+        <legend> <h4>Question {{ foo }}</h4></legend>
+
+            <label class="form-control">{{ q.body }}</label>
+
+            {% for r in reps %}
+            {% if r.quest==q %}
+                {% set state = r.valid %}
+                    <div class="form-check form-check-inline ">
+                     <input  class="form-check-input" type="radio" name="flexRadio{{ foo }}" id="{{ numr }}" value={{ state }}>
+                    <label class="form-check-label" for="flexRadio{{ foo }}">
+                        {{ r.reponse }}
+                    </label>
+                    </div>
+
+                {% set numr = numr + 1 %}
+            {% endif %}
+            {% endfor %}
+        {% set foo = foo + 1 %}
+    </fieldset>
+{% endfor %}
+
+
+ <button type="submit" title="valider quiz" class="btn btn-primary">Valider</button>
+
+    <input type="hidden" name="numr" value="{{ numr }}">
+    <input type="hidden" name="d" value="{{ "now"|date("d") }}">
+    <input type="hidden" name="m" value="{{ "now"|date("m") }}">
+    <input type="hidden" name="y" value="{{ "now"|date("Y") }}">
+    <input type="hidden" name="quest" value="{{ foo }}">
+
+</form>
+    </div>
+
+    </div>
+{% endblock %}

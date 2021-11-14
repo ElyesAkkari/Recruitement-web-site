@@ -1,0 +1,320 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <div class="page-heading about-heading header-text" style="background-image: url(/eltemp/assets/images/heading-6-1920x500.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>{{ of.type }}</h4>
+                        <h2>{{ of.noms }}</h2>
+                        <div>
+                            {% for message in app.flashes('success') %}
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            {% for message in app.flashes('update') %}
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                            {% for message in app.flashes('delete') %}
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8">
+                    <p class="lead">
+                        <i class="fa fa-calendar"></i> {{ of.datedeb|date("d-m-Y")}} / {{of.datefin|date("d-m-Y")}}
+                    </p>
+
+                    <br>
+                    <br>
+
+                    <div class="form-group">
+                        <h5>{{ of.noms}}</h5>
+                    </div>
+                    <p>   {{ of.description}} </p>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="col-md-3 col-sm-4">
+                    <div class="contact-form">
+                        <div class="form-group">
+
+                            <button   id="calendrierajouter" type="submit" class="filled-button btn-block">ajouter a mon calendrier </button>
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <img class="img-fluid wc-image" src="/assets/images/properties/{{ of.imageName}}" alt="job" >
+                    </div>
+
+                    <br>
+
+                    <ul class="social-icons text-center">
+                        <li><a href="{{ path('sendmails',{'id':of.id}) }}"><i class="fa fa-envelope"></i></a></li>
+                        <li> <form method="post" action="{{ path('postuler',{'id':of.id}) }}">
+                                <input type="hidden" name="user" value="{{ app.user.id }}">
+                               <a href="javascript:;" onclick="parentNode.submit();"><i class="fa fa-plus-circle"></i></a>
+                        </form></li>
+                    </ul>
+
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <!-- column -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Recent Comments</h4>
+                        </div>
+                        <div class="comment-widgets scrollable">
+
+                            <!-- Comment Row -->
+                            {% for f in formations%}
+                                <div class="d-flex flex-row comment-row">
+
+                                    <div class="active w-100" style="padding: 10px">
+                                        <h6 class="font-medium" style="color: blue">{{ app.user.username }} :</h6>
+                                        <span class="m-b-15 d-block">{{ f.message}} </span>
+                                        <div class="comment-footer">
+
+                                            <td>{{ f.datetime|date("d-m-Y h:i:s")}} </td>
+
+                                            <td><a class="label label-rounded label-danger" href="{{ path ('supprimercommentaire',{'id':f.id}) }}">supprimer</a></td>
+                                            <span class="action-icons active">
+                                                <a href="/ModifierCommentaire/{{f.id}}"><i class="ti-pencil-alt">Edit</i></a>
+                                                <a href="javascript:void(0)"><i class="icon-close"></i></a>
+                                               <a href="{{ path('post_like',{'id':f.id}) }}" class="btn btn-link js-like">
+                                                   {% if app.user and f.islikedByUser(app.user) %}
+                                                       <i class="fa fa-thumbs-up "></i>
+
+                                                   {% else %}
+                                                       <i class="fa fa-thumbs-up"></i>
+                                                   {% endif %}
+                                                   <span class="js-likes">{{ f.likes | length }}</span>
+
+                                                   <span class="js-label">j'aime</span>
+
+
+                                               </a>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {%endfor%}
+                        </div>
+                        <div class="panel-footer">
+                            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+                            <div class="input-group">
+
+                                {#  <input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." />#}
+                                {{ form_widget(form.message,{'attr': {'class': 'form-control input-md','placeholder':'ecrire votre commentaire'}}) }} <span class="input-group-btn">
+                                                      {{ form_errors(form.message )}}
+
+
+                                                    <button class="btn btn-primary btn-md" id="btn-chat">Send</button>
+
+                                                    </span>
+
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+
+                    </div>
+                </div>
+                <!-- column -->
+
+
+
+                <div class="col-md-3">
+                    <div class="section-heading">
+                        <h2>Contact Details</h2>
+                    </div>
+
+                    <div class="left-content">
+                        <p>
+                            <span>Nom de la socite </span>
+
+                            <br>
+
+                            <strong>{{ of.noms }}</strong>
+                        </p>
+
+                        <p>
+                            <span>Email</span>
+
+                            <br>
+
+                            <strong>
+                                <a >{{ of.mailen}}</a>
+                            </strong>
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact-form">
+                        <form action="#" id="contact">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Pick-up location" required="">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Return location" required="">
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Pick-up date/time" required="">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Return date/time" required="">
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter full name" required="">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Enter email address" required="">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <input type="text" class="form-control" placeholder="Enter phone" required="">
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function Ask(event){
+            var val = confirm("Voulez-vous supprimer?");
+            if( val == false ) {
+                event.preventDefault();
+            }
+        }
+        document.querySelectorAll('.label ').forEach(function (qty){
+            qty.addEventListener('click',Ask);
+        });
+    </script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function onClickBtnLike(event){
+            event.preventDefault();
+            const url = this.href;
+            const spanCount = this.querySelector('span.js-likes');
+            const icone = this.querySelector('i');
+
+            axios.get(url).then(function (response){
+
+
+
+                spanCount.textContent = response.data.likes;
+                if (icone.classList.contains('fas')) {
+                    icone.classList.replace('fas','far');
+                }
+                else {icone.classList.replace('far','fas');
+                }
+            }).catch(function (error){
+                if(error.response.status === 403 )
+                {
+                    window.alert("vous ne pouvez pas liker un article si vous etes pas connecte !")
+
+                }
+            });
+        }
+        document.querySelectorAll('a.js-like').forEach(function(link){
+            link.addEventListener('click',onClickBtnLike);
+        })
+
+
+
+
+
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        document.getElementById("calendrierajouter").addEventListener("click", async function (event){
+            event.preventDefault();
+          var res= await  axios.get("http://127.0.0.1:8000/ajoutercalendrier/"+{{of.id|json_encode()}}) ;
+          console.log(res);
+        });
+    </script>
+
+
+
+{% endblock %}

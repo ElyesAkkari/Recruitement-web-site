@@ -1,0 +1,58 @@
+{% extends 'back.html.twig' %}
+{% block content %}
+
+    <div class="right_col">
+        <div class="container">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Liste des Participants :</h3>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <form action="#" method="get">
+                    <div class="input-group" autocomplete="off">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Chercher" >
+                        <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md">
+                <table class="table table-bordered table-list-search" >
+                    <thead>
+                    <tr>
+                        <th scope="col">Participant</th>
+                        <th scope="col">Offre</th>
+                        <th scope="col">Quiz</th>
+                        <th scope="col">Ajouté le :</th>
+                        <th scope="col">Pourcentage</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for qst in em %}
+                    <tr>
+                        <td>{{ qst.user.email}}</td>
+                        <td>{{ qst.offre.noms }}</td>
+                        <td>
+                            {% if  qst.quiz != null %}
+                                {{ qst.quiz.titre }}
+                            {% endif %}
+                        </td>
+                        <td>{{ qst.added|date("d/m/Y")}}</td>
+                        <td>{{ qst.note }}%</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {{ knp_pagination_render(em) }}
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

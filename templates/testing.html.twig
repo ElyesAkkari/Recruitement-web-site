@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="eltemp/assets/images/gt_favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+    <title>Impacteers</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('eltemp/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('eltemp/vendor/bootstrap/css/bootstrap-grid.min.css') }}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ asset('eltemp/assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('eltemp/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('eltemp/assets/css/owl.css') }}">
+
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/"><h2><em>Impact</em>eers</h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path("test") }}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{ path('affichfrontoffre') }}">Jobs</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{ path('frontformation') }}">Formations</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{ path('afficherEE') }}">Events</a></li>
+                    {% if app.user%}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>  {{ app.user.username }}</a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ path('ModifierProfil', { 'id': app.user.id }) }}">Profile</a>
+                                <a class="dropdown-item" href="{{ path("quiz") }}">Liste des QUIZ</a>
+                                <a class="dropdown-item" href="{{ path("question") }}">Liste des Questions</a>
+                                <a class="dropdown-item" href="{{ path("answer") }}">Liste des Reponses</a>
+                                <a class="dropdown-item" href="{{ path("entretient") }}">Liste des Entretient</a>
+                                <a class="dropdown-item" href="{{ path("typeent") }}">Liste des Types</a>
+                                <a class="dropdown-item" href="{{ path("choice") }}">Créer un CV</a>
+                                <a class="dropdown-item" href="{{ path("participation") }}">Liste des Candidatures</a>
+                                <a class="dropdown-item" href="{{ path('notes',{'id':app.user.id})}}">Liste de mes candidatures</a>
+                                <a class="dropdown-item" href="{{ path("logout") }}">Deconnexion</a>
+                            </div>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login / Register</a>
+
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ path("login") }}">Login</a>
+                                <a class="dropdown-item" href="team.html">Register en tnat que Société</a>
+                                <a class="dropdown-item" href="{{ path("inscriptionUser") }}">Register en tant que candidat</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% block content %} {% endblock %}
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner-content">
+                    <p>Copyright © 2020 Empacteers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{{ asset('eltemp/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('eltemp/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script>
+    function myFunction() {
+        alert("Voulez vous vraiment le supprimer?");
+    }
+</script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        var activeSystemClass = $('.list-group-item.active');
+
+        //something is entered in search form
+        $('#system-search').keyup( function() {
+            var that = this;
+            // affect all table rows on in systems table
+            var tableBody = $('.table-list-search tbody');
+            var tableRowsClass = $('.table-list-search tbody tr');
+            $('.search-sf').remove();
+            tableRowsClass.each( function(i, val) {
+
+                //Lower text for case insensitive
+                var rowText = $(val).text().toLowerCase();
+                var inputText = $(that).val().toLowerCase();
+                if(inputText != '')
+                {
+                    $('.search-query-sf').remove();
+                    tableBody.prepend('<tr class="search-query-sf"><strong>Searching for: "'
+                        + $(that).val()
+                        + '"</strong></tr>');
+                }
+                else
+                {
+                    $('.search-query-sf').remove();
+                }
+
+                if( rowText.indexOf( inputText ) == -1 )
+                {
+                    //hide rows
+                    tableRowsClass.eq(i).hide();
+
+                }
+                else
+                {
+                    $('.search-sf').remove();
+                    tableRowsClass.eq(i).show();
+                }
+            });
+            //all tr elements are hidden
+            if(tableRowsClass.children(':visible').length == 0)
+            {
+                tableBody.append('<td class="search-sf">Aucune resultat correspond à votre recherche</td>');
+            }
+        });
+    });
+
+
+</script>
+
+<!-- Additional Scripts -->
+<script src="{{ asset('eltemp/assets/js/custom.js') }}"></script>
+<script src="{{ asset('eltemp/assets/js/owl.js') }}"></script>
+</body>
+</html>

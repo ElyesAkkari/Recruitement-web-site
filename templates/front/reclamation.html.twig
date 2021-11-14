@@ -1,0 +1,59 @@
+{% extends 'testing.html.twig' %}
+
+{% block css %}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href={{ asset("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css") }} rel="stylesheet">
+    <link href={{ asset("http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css") }} rel="stylesheet"  type='text/css'>
+    <title>Impacteers</title>
+
+                <!-- Bootstrap core CSS -->
+    <link href={{ asset("eltemp/vendor/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
+
+                <!-- Additional CSS Files -->
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/fontawesome.css") }}>
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/style.css") }}>
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/owl.css") }}>
+    <link rel="stylesheet" href={{ asset("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css") }}/>
+
+{% endblock%}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        {{ form_start(f,{'attr': {'novalidate': 'novalidate'}} ) }}
+        <div class="form-group">
+            {{ form_label(f.Contenu, 'contenu réclamation')}}
+            {{ form_widget(f.Contenu,{'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(f.Contenu) }}
+        </div>
+        <br>
+        <div class="form-group">
+            {{ form_label(f.event, 'Evenement à réclamer')}}
+            {{ form_widget(f.event,{'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(f.event) }}
+        </div>
+        {{ form_widget(f.Reclamer,{'attr':{'class':'btn btn-primary btn-sm'}}) }}
+        {{ form_end(f) }}
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset("eltemp/vendor/jquery/jquery.min.js") }}"></script>
+    <script src="{{ asset("eltemp/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="{{ asset("eltemp/assets/js/custom.js") }}"></script>
+    <script src="{{ asset("eltemp/assets/js/owl.js") }}"></script>
+
+{% endblock %}

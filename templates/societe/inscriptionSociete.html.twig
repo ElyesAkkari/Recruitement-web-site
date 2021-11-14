@@ -1,0 +1,62 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+    <body>
+    <div class="container">
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+      <div class="row">
+        <div class="col-6 col-md-4"></div>
+    <div class="col-6 col-md-4">
+
+                <span class="login100-form-title p-b-33">
+						Account Registration
+					</span>
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    <br/>
+                    <br/>
+
+                <div class="wrap-input100">
+                    {{ form_widget(form.nom,{'attr':{'placeholder':'nom du societe','class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.nom) }} </label>
+                                <div class="wrap-input100 ">
+                    {{ form_widget(form.matriculefiscale,{'attr':{'placeholder':'Matricule',
+                    'class':'form-control'}})}}
+
+                </div>
+              <label class="alert-danger"> {{form_errors(form.matriculefiscale) }} </label>
+                
+                
+                <div class="wrap-input100 ">
+                    {{ form_widget(form.siteweb,{'attr':{'placeholder':'site web','class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.siteweb) }} </label>
+                <div class="wrap-input100 ">
+                    {{ form_widget(form.logo,{ 'attr':{'placeholder':'logo','class':'form-control' }})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.logo) }} </label>
+                                <div class="wrap-input100 ">
+                    {{ form_widget(form.description,{ 'attr':{'placeholder':'description','class':'form-control' }})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.description) }} </label>
+
+                <div class="container-login100-form-btn m-t-20">
+                    <button class="btn btn-outline-warning" type="submit">
+                        Inscrire
+                    </button>
+                </div>
+
+                {{ form_end(form) }}
+
+</div>
+                <div class="col-6 col-md-4"></div>
+
+            </div>
+        </div>
+
+    </body>
+{% endblock %}

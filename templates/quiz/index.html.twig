@@ -1,0 +1,89 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+<style>
+    .resume{
+        padding-left: 0;
+        padding-right: 0;
+    }
+</style>
+    <div class="resume">
+
+            <div>
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('update') %}
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('delete') %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Liste des Quiz</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <form action="#" method="get" autocomplete="off">
+                    <div class="input-group">
+                        <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                        <input class="form-control" id="system-search" name="q" placeholder="Chercher">
+                        <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+            <br>
+        <div class="col" align="center" >
+
+        <table border="1" class="table table-hover table-secondary table-list-search">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Creer par</th>
+                <th scope="col">Nombre des questions</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for qz in quizs %}
+
+                <tr class="clickable-row" data-href="{{ path('listpart',{'id':qz.id}) }}" title="afficher les questions de ce quiz">
+
+                    <td>{{ qz.titre}}</td>
+                    <td>{{qz.owner}} </td>
+                    <td>{{ qz.nbrquest }}</td>
+                   <td> <a href="{{ path ('editQuiz',{'id':qz.id}) }}"><button class="btn btn-outline-info" title="edit quiz"><i class="fa fa-edit"></i> Modifier</button> </a>
+                       <a href="{{ path ('deleteQuiz',{'id':qz.id}) }}"><button class="btn btn-outline-danger" title="delete quiz" onclick="myFunction()"> <i class="fa fa-trash"></i> Supprimer</button></a>
+                       <a href="{{ path ('exemple',{'id':qz.id}) }}"><button class="btn btn-outline-warning" title="preview quiz"> <i class="fa fa-eye"></i></button></a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            {{ knp_pagination_render(quizs) }}
+            <a href="{{ path('addQuiz') }}"> <button class="btn btn-primary" title="add quiz"><i class="fa fa-plus-circle"></i> Ajouter Un quiz</button></a>
+    </div>
+</div>
+    </div>
+{% endblock %}

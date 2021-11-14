@@ -89,6 +89,32 @@ a.filled-button:hover {
 	background-size: cover;
 }
 
+.cust-heading {
+	padding: 170px 0px 130px 0px;
+	text-align: center;
+	background: #edffec;
+}
+.resume{
+	padding: 170px 30px 130px 30px;
+	background: #edffec;
+}
+
+.resume h4 {
+	color: #f33f3f;
+	font-size: 22px;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 25px;
+	margin-left: 40%;
+
+}.cust-heading h4 {
+	 color: #f33f3f;
+	 font-size: 22px;
+	 text-transform: uppercase;
+	 font-weight: 700;
+	 margin-bottom: 15px;
+ }
+
 .page-heading .text-content h4 {
 	color: #f33f3f;
 	font-size: 22px;
@@ -115,7 +141,7 @@ a.filled-button:hover {
   z-index: 9999999;
   color: #fff;
 }
-
+.clickable-row { cursor: pointer; }
 #preloader .jumper {
   left: 0;
   top: 0;
@@ -291,10 +317,13 @@ header .navbar {
 
 
 /* Banner Style */
+
 .banner {
 	position: relative;
 	text-align: center;
 	padding-top: 80px;
+
+
 }
 
 .banner-item-01 {
@@ -303,6 +332,8 @@ header .navbar {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+
+
 }
 
 .banner-item-02 {
@@ -323,6 +354,7 @@ header .navbar {
 
 .banner .banner-item {
 	max-height: 600px;
+
 }
 
 .banner .text-content {
@@ -339,6 +371,7 @@ header .navbar {
 	text-transform: uppercase;
 	font-weight: 700;
 	margin-bottom: 15px;
+
 }
 
 .banner .text-content h2 {
@@ -633,6 +666,7 @@ footer .inner-content p a {
 .dropdown-item { 
 	padding: .5rem 1.5rem; 
 }
+
 
 .page-heading {
 	position:relative;

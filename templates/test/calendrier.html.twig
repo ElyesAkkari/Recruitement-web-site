@@ -1,0 +1,66 @@
+{% extends 'testing.html.twig' %}
+{% block content%}
+
+<!-- Page Content -->
+    <div class="page-heading about-heading header-text" style="background-image: url(/eltemp/assets/images/heading-6-1920x500.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Lorem ipsum dolor sit amet</h4>
+                        <h2>Jobs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.css">
+    {% endblock %}
+
+
+    {% block body %}
+        <div id="calendar-holder"></div>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.1.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    var calendarEl = document.getElementById('calendar-holder');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+    defaultView: 'dayGridMonth',
+    editable: true,
+    eventSources: [
+    {
+    url: "/fc-load-events",
+    method: "POST",
+    extraParams: {
+    filters: JSON.stringify({})
+    },
+    failure: () => {
+    // alert("There was an error while fetching FullCalendar!");
+    },
+    },
+    ],
+    header: {
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+    },
+    plugins: [ 'interaction', 'dayGrid', 'timeGrid' ], // https://fullcalendar.io/docs/plugin-index
+
+    timeZone: 'UTC',
+    });
+    calendar.render();
+    });
+    </script>
+    {% endblock %}
+{% endblock %}

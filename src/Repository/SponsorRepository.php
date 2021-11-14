@@ -47,4 +47,29 @@ class SponsorRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function RecherhceSponsorParId($id){
+        return $this->createQueryBuilder('sponsor')
+            ->andWhere('sponsor.id LIKE :id OR sponsor.nom LIKE :id OR sponsor.type LIKE :id')
+            ->setParameter('id', '%'.$id.'%')
+            ->getQuery()
+            ->getResult();
+    }
+    public function TriSponsorParNom(){
+        return $this->createQueryBuilder('sponsor')
+            ->orderBy('sponsor.nom','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function TriSponsorParType(){
+        return $this->createQueryBuilder('sponsor')
+            ->orderBy('sponsor.type', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function TriSponsorParEvent(){
+        return $this->createQueryBuilder('sponsor')
+            ->orderBy('sponsor.event', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

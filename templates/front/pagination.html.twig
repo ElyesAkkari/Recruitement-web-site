@@ -1,0 +1,98 @@
+{% extends 'testing.html.twig' %}
+{% block css %}
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href={{ asset("http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css") }} rel="stylesheet">
+    <link href={{ asset("http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css") }} rel="stylesheet"  type='text/css'>
+    <title>Impacteers</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={{ asset("eltemp/vendor/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/fontawesome.css") }}>
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/style.css") }}>
+    <link rel="stylesheet" href={{ asset("eltemp/assets/css/owl.css") }}>
+    <link rel="stylesheet" href={{ asset("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css") }}/>
+{% endblock %}
+{% block content %}
+    <div class="banner header-text">
+    </div>
+    <!-- Banner Ends Here -->
+    <div class="latest-products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Special Events</h2>
+                        <form method="post" action="{{ path('rechercherEE') }}">
+                            <input type="text" name="search">
+                            <input type="submit" value="Search event" class="btn btn-primary btn-sm">
+                        </form>
+                        <table>
+                            <tr>
+                                <th>
+                                    <form method="post" action="{{ path("TrierEventParNom") }}">
+                                        <input type="submit" value="Trier par nom" class="btn btn-primary btn-sm" name="trier">
+                                    </form>
+                                </th>
+                                <th>
+                                    <form method="post" action="{{ path("TrierEventParPrix") }}">
+                                        <input type="submit" value="Trier par prix" class="btn btn-primary btn-sm" name="trier">
+                                    </form>
+                                </th>
+                                <th>
+                                    <form method="post" action="{{ path("TrierEventParDate") }}">
+                                        <input type="submit" value="Trier par date" class="btn btn-primary btn-sm" name="trier">
+                                    </form>
+                                </th>
+                            </tr>
+                        </table>
+                        <a href="jobs.html">view more <i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+                {% for e in pagination  %}
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <a href="{{ path("detailE",{"id":e.id}) }}" name="detail"><img src="{{ asset('uploads/images/' ~ e.image)}}"
+                                                                                           style="width: 200px ; height:200px"></a>
+                            <div class="down-content">
+
+                                <h6>{{ e.prix }}</h6>
+
+                                <h4><small><i class="fa fa-briefcase"></i> {{ e.type }} <br> <strong><i class="fa fa-building"></i>
+                                            {{ e.nom }}</strong></small></h4>
+
+                                <small>
+                                    <strong title="Posted on"><i class="fa fa-calendar"></i> {{ e.date|date('d-m-Y') }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong title="Location"><i class="fa fa-map-marker"></i> Tunisia</strong>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor%}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="best-features">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a href="{{ path('ajouterR') }}">Cliquez ici pour réclamer un problème ou poser une question sur un évenement</a>
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
+{% block js %}
+    <script src="{{ asset("eltemp/vendor/jquery/jquery.min.js") }}"></script>
+    <script src="{{ asset("eltemp/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="{{ asset("eltemp/assets/js/custom.js") }}"></script>
+    <script src="{{ asset("eltemp/assets/js/owl.js") }}"></script>
+{% endblock %}

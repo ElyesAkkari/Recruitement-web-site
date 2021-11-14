@@ -1,0 +1,138 @@
+{% extends 'testing.html.twig' %}
+
+{% block content %}
+
+
+    <body>
+    <div class="container">
+
+<br/>
+<br/>
+    <br/>
+    <br/>
+    <br/>
+        <h2>Account Settings </h2>
+        <hr/>
+            <br/>
+
+
+   
+                <div class="row">
+
+        <div class="col-6 col-md-4">
+        
+        
+     {% if app.user.imageName == null and app.user.imagegoogle == null  %}
+       <img src="../profile.png"  style="height:100px; width:100px"/>
+
+        {% elseif app.user.imagegoogle == null %}
+   
+    <img src="/images/users/{{ app.user.imageName}}"  style="height:200px; width:200px; clip-path:ellipse(50% 50%)"/>
+
+    {% else %}
+        <img src="{{app.user.imagegoogle}}"  style="height:200px; width:200px; clip-path:ellipse(50% 50%)"/>
+
+    
+
+        {% endif %}
+
+
+<hr/>
+
+
+<h3>{{ app.user.username ~ " " ~ app.user.prenom}}</h3>
+
+<hr/>
+
+<a href="{{path('SupprimerProfil',{'id': app.user.id})}}">Delete my account </a>
+        </div>
+
+    <div class="col-6 col-md-4">
+                <span class="login100-form-title p-b-33">
+					</span>
+
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                <div class="wrap-input100">
+                <label> First Name <span>*</span></label>
+                    {{ form_widget(form.username,{'attr':{'placeholder':'nom d utilisateur','class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.username) }} </label>
+                                <div class="wrap-input100 ">
+                                                <label> Last Name <span>*</span></label>
+
+                    {{ form_widget(form.prenom,{'attr':{'placeholder':'votre prenom',
+                    'class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.prenom) }} </label>
+
+                <div class="wrap-input100 ">
+                                <label>Email Address <span>*</span></label>
+
+                    {{ form_widget(form.email,{'attr':{'placeholder':'votre adresse mail','class':'form-control'}})}}
+                </div>
+                <label class="alert-danger "> {{form_errors(form.email) }} </label>
+                
+                <div class="wrap-input100 ">
+                                                <label>Cin <span>*</span></label>
+
+                    {{ form_widget(form.cin,{'attr':{'placeholder':'Carte d"identité',
+                    'class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.cin) }} </label>
+                
+                <div class="wrap-input100 ">
+                                                <label> Phone Number</label>
+
+                    {{ form_widget(form.numtel,{'attr':{'placeholder':'Numéro de tel','class':'form-control'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.numtel) }} </label>
+                <div class="wrap-input100" >
+                    {{ form_widget(form.datenaissance,{ 'attr':{'type':'date'}})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.datenaissance) }} </label>
+                                <div class="wrap-input100 ">
+                    {{ form_widget(form.adresse,{ 'attr':{'placeholder':'Adresse','class':'form-control' }})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.adresse) }} </label>
+                <div class="wrap-input100 ">
+                    {{ form_widget(form.niveau,{ 'attr':{'placeholder':'Niveau','class':'form-control' }})}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.niveau) }} </label>
+
+                                <div class="wrap-input100 ">
+                    {{ form_widget(form.imageFile)}}
+                </div>
+                <label class="alert-danger"> {{form_errors(form.imageFile) }} </label>
+
+
+
+
+                {{ form_end(form) }}
+</div>
+        <div class="col-6 col-md-4">
+
+ {% for message in app.flashes('success')%}
+<div id="hideDiv" class="alert alert-success">
+{{message}}
+</div>
+{% endfor %}
+        </div>
+
+</div>
+</div>
+</body>
+
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+$(function () {
+  setTimeout(function () {
+    $("#hideDiv").fadeOut(1500);
+  }, 3000);
+});
+</script>
+
+{% endblock %}
+
+

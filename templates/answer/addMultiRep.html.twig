@@ -1,0 +1,29 @@
+{% extends 'testing.html.twig' %}
+{% block content %}
+<div class="resume" style="padding-left: 20%">
+
+    <h3><font color="#f33f3f"> Ajout des reponse pour la question :<u>{{ quest.body }}?</u> </font></h3>
+<br>
+
+<form action="{{ path('addmultirep') }}" method="post">
+    {% for i in 1 .. quest.nbrrep %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label > Reponse {{ i }}</label>
+                <input type="text" class="form-control" name="rep{{ i }}" placeholder="reponse">
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">etat  {{ i }}</label><br>
+                <input class="form-check-input" type="checkbox" value="true" name="cb{{ i }}">
+            </div>
+        </div>
+        {% endfor %}
+    <input type="hidden" value="{{ quest.id }}" name="quest">
+    <div class="form-group" style="padding-left: 25%">
+        <input type="submit" value="Valider" class="btn btn-outline-primary">
+    </div>
+</form>
+</div>
+
+
+{% endblock %}

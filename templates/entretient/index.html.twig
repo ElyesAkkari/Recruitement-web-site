@@ -1,0 +1,99 @@
+{% extends 'testing.html.twig' %}
+
+{% block content %}
+    <style>
+        .resume{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+    <div class="resume">
+
+    <div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('update') %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('delete') %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="text-content">
+                <h4 class="page-header">Liste des Entretien</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <form method="post" action="{{ path ('recherche') }}">
+            <div class="input-group">
+            <input type="text" name="search" placeholder="rechercher" class="form-control" >
+            <input type="submit" class="btn btn-primary" value="Recherche">
+            </div>
+        </form>
+
+    </div>
+            <br>
+    <div class="col" align="center">
+        <table class="table" border="1" class="table table-hover table-secondary">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Recruteur</th>
+                <th scope="col">Resultat</th>
+                <th scope="col">Temps</th>
+                <th scope="col">Numero Tel Candidat</th>
+
+                <th scope="col">Mail Candidat</th>
+                <th scope="col">Etat</th>
+
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            {% for e in entretient %}
+                <tr>
+                    <td>{{ e.datedeb|date("d/m/Y") }}</td>
+                    <td>{{ e.recruteur }}</td>
+                    <td>{{ e.resultat }}</td>
+                    <td>{{ e.temps|date("h:i:s")}}</td>
+                    <td>{{ e.NumeroTelephone }}</td>
+                    <td>{{ e.mail }}</td>
+                    <td>{{ e.etat }}</td>
+                    <td><a href="{{ path ('editEnt',{'id':e.id}) }}"><button class="btn btn-info" title="edit entretien"><i class="fa fa-edit"></i></button></a>
+                        <a href="{{ path ('deleteEnt',{'id':e.id}) }}"><button class="btn btn-danger" onclick="myFunction()"> <i class="fa fa-trash" title="delete entretien"></i></button></a>
+                        <a href="{{ path('envoyerEmail',{'id':e.id}) }}"><button class="btn btn-secondary" title="send email"><i class="fa fa-envelope-square"></i>
+
+
+
+                            </button></a>
+
+                    </td>
+            </tr>
+            {% endfor %}
+
+    </table>
+    <a href="{{ path('addEntretient') }}"> <button class="btn btn-primary" title="add entretien"><i class="fa fa-plus-circle"></i> Ajouter</button></a>
+    </div>
+</div>
+</div>
+{% endblock %}
