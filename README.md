@@ -1,16 +1,26 @@
-# projetPI
+<div id="top"></div>
 
--web 2.0-
+# Symfony 4 : Recruitement website
+## About The Project
 
-git clone +url;
-composer require symfony/web-server-bundle
-php bin/console server:run
+This website allows users to apply in different job/internship offers and allows admins to create quizes which clients should take in order to apply in certain offers.
 
-bonjour
-
-mariem ayadi
->>>>>>> 9d1cc99cddbfbaa275f3c11d2badabe7e7e323d5
+![home page](img/login.png)
 
 
-hello impacteers
-cordialement,
+![home page](img/home.png)
+
+
+Mobile version - [CodeNameOne-RecruitementApp](https://github.com/ElyesAkkari/CodeNameOne-RecruitementApp)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Contact
+
+Elyes Akkari - [Linkedin](https://www.linkedin.com/in/elyes-akkari-26013a1b9/)
+
+GitHub: [Elyes Akkari](https://github.com/ElyesAkkari)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
